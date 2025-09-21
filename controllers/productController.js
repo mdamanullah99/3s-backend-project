@@ -482,7 +482,10 @@ export const searchProductsController = async (req, res, next) => {
     await client.query("BEGIN");
 
     const { q } = req.query;
-    if (!q) return res.status(400).json({ error: "Search query is required" });
+    if (!q) {
+      await client.query("ROLLBACK");
+      return res.status(400).json({ error: "Search query is required" });
+    }
 
     const products = await searchProducts(client, q);
 
@@ -490,7 +493,10 @@ export const searchProductsController = async (req, res, next) => {
     res.json(products);
   } catch (error) {
     await client.query("ROLLBACK");
-    next(error);
+    console.error("SearchProductsController Error:", error); // 🔍 log actual error
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
   } finally {
     client.release();
   }
