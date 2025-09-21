@@ -493,7 +493,7 @@ export const searchProductsController = async (req, res, next) => {
     res.json(products);
   } catch (error) {
     await client.query("ROLLBACK");
-    console.error("SearchProductsController Error:", error); // 🔍 log actual error
+    console.error("SearchProductsController Error:", error); // Logs full error
     res
       .status(500)
       .json({ error: "Internal Server Error", details: error.message });
