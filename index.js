@@ -19,7 +19,6 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import { errorHandler } from "./middlewares/errorMiddleware.js";
 
 dotenv.config();
-const currentNodeEnvironment = process.env.NODE_ENV;
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -33,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
   })
 );
@@ -46,10 +45,10 @@ app.use("/api/categories", categoryRoutes);
 // Global error handler
 app.use(errorHandler);
 
-// Launch server
-app.listen(port, () => {
-  console.log(` Server running on http://localhost:${port}`);
-});
+// // Launch server
+// app.listen(port, () => {
+//   console.log(` Server running on http://localhost:${port}`);
+// });
 
-// // ✅ Export for Vercel
-// export default app;
+//  Export for Vercel
+export default app;
