@@ -28,6 +28,10 @@ router.post(
 // List Products with Filters Route ................................
 router.get("/", listProducts);
 
+// Search Product with Query Route...................................
+//        (Must Put Static routes Before Dynamic Routes)
+router.get("/search", searchProductsController);
+
 // Get One Product By Id Route .....................................
 router.get("/:id", getOneProductById);
 
@@ -44,8 +48,5 @@ router.put(
 
 // Delete One Product By ID Route....................................
 router.delete("/:id", authMiddleware, deleteOneProduct);
-
-// Search Product with Query Route...................................
-router.get("/search", searchProductsController);
 
 export default router;
