@@ -188,7 +188,7 @@ export default app;
 ### 8. Live Links
 
 - **Live Backend URL**: [https://3s-backend-project.vercel.app](https://3s-backend-project.vercel.app)  
-- **Database (Neon)**: [https://console.neon.tech](https://console.neon.tech)
+- **Database (Neon)**: [[https://console.neon.tech](https://console.neon.tech/app/projects/gentle-credit-12915312?branchId=br-purple-unit-adk6xxah)]([https://console.neon.tech](https://console.neon.tech/app/projects/gentle-credit-12915312?branchId=br-purple-unit-adk6xxah))
 
 ---
 
