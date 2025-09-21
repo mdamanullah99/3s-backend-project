@@ -61,7 +61,7 @@ export const searchProducts = async (client, keyword) => {
     SELECT p.*, c.name AS category_name
     FROM products p
     JOIN categories c ON p.category_id = c.id
-    WHERE p.name ILIKE $1 OR p.description ILIKE $1
+    WHERE p.title ILIKE $1 OR p.description ILIKE $1
     ORDER BY p.id DESC;
   `;
   const values = [`%${keyword}%`];
