@@ -478,6 +478,7 @@ export const deleteOneProduct = async (req, res) => {
 //  Search Product By Query Controller......................................................
 export const searchProductsController = async (req, res, next) => {
   const client = await pool.connect();
+  console.log("I am at start");
   try {
     await client.query("BEGIN");
 
@@ -487,11 +488,15 @@ export const searchProductsController = async (req, res, next) => {
       return res.status(400).json({ error: "Search query is required" });
     }
 
+    console.log("I am at Before Query");
     const products = await searchProducts(client, q);
+
+    console.log("I am at end");
 
     await client.query("COMMIT");
     res.json(products);
   } catch (error) {
+    console.log(error);
     await client.query("ROLLBACK");
     console.error("SearchProductsController Error:", error); // Logs full error
     res
